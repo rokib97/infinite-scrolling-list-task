@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Login from "./Pages/Authentication/Login";
+import PrivateRoute from "./Pages/Authentication/PrivateRoute";
 import Signup from "./Pages/Authentication/Signup";
 import Home from "./Pages/Home/Home";
 function App() {
@@ -12,7 +13,14 @@ function App() {
       <Navbar />
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        ></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
       </Routes>

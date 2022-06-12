@@ -10,7 +10,7 @@ const Home = () => {
   const [loader, setLoader] = useState(true);
   useEffect(() => {
     const getInfo = async () => {
-      const res = await fetch(`https://randomuser.me/api/?page=1&results=5`);
+      const res = await fetch(`https://randomuser.me/api/?page=1&results=9`);
       const data = await res.json();
       setUsers(data.results);
     };
@@ -20,7 +20,7 @@ const Home = () => {
 
   const fetchInfo = async () => {
     const res = await fetch(
-      `https://randomuser.me/api/?page=${page}&results=5`
+      `https://randomuser.me/api/?page=${page}&results=9`
     );
     const data = await res.json();
     return data.results;
@@ -30,7 +30,7 @@ const Home = () => {
     const infoFormServer = await fetchInfo();
 
     setUsers([...users, ...infoFormServer]);
-    if (infoFormServer.length === 0 || infoFormServer.length < 5) {
+    if (infoFormServer.length === 0 || infoFormServer.length < 9) {
       setLoader(false);
     }
     setPage(page + 1);
@@ -45,7 +45,7 @@ const Home = () => {
         loader={<Loading />}
         endMessage={<EndMsg />}
       >
-        <div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {users &&
             users?.map((user, index) => <UserInfo user={user} key={index} />)}
         </div>
